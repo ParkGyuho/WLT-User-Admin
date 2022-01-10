@@ -1,17 +1,12 @@
 <template>
-  <div id="app">
-    <router-view></router-view>
+  <div>
+      This is MenuComponent
   </div>
 </template>
 
 <script>
-
-
-
 export default {
-  components:{
-    
-  }
+
 }
 </script>
 
