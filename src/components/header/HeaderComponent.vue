@@ -1,0 +1,57 @@
+<template>
+  <v-container>
+    <div class="header">
+      <div class="logo-area">
+        <LogoComponent />
+      </div>
+      <div class="menu-area">
+        <MenuComponent />
+      </div>
+      <div class="logout-button">
+        <LogoutButton />
+      </div>
+    </div>
+  </v-container>
+</template>
+
+<script>
+import LogoComponent from "./elements/Logo";
+import LogoutButton from "./elements/LogoutButton";
+import MenuComponent from "./elements/Menu";
+
+export default {
+  components: {
+    LogoComponent,
+    LogoutButton,
+    MenuComponent
+  }
+};
+</script>
+
+<style scoped>
+.container {
+  background-color: lightblue;
+  padding: 10px;
+}
+.header {
+  display: flex;
+  height: 80px;
+}
+.logo-area {
+  background-color: wheat;
+  width: 25%;
+}
+.logout-button {
+  width: 7%;
+  background-color: wheat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu-area {
+  width: 65%;
+  margin: 0 auto;
+  background-color: wheat;
+  align-items: center;
+}
+</style>
