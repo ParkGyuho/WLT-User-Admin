@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <div class="header">
-      <div class="logo">
+      <div class="logo-area">
         <LogoComponent />
       </div>
-      <div class="menu">
+      <div class="menu-area">
         <MenuComponent />
       </div>
       <div class="logout-button">
@@ -37,7 +37,7 @@ export default {
   display: flex;
   height: 80px;
 }
-.logo {
+.logo-area {
   background-color: wheat;
   width: 25%;
 }
@@ -48,9 +48,10 @@ export default {
   justify-content: center;
   align-items: center;
 }
-.menu {
+.menu-area {
   width: 65%;
   margin: 0 auto;
   background-color: wheat;
+  align-items: center;
 }
 </style>

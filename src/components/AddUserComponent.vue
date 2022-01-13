@@ -4,7 +4,7 @@
       <v-form ref="form" lazy-validation>
         <v-row>
           <v-col class="image-area">
-            Image
+            <v-col class="image-preview"> Image Preview Area </v-col>
             <v-file-input
               @change="upload"
               accept="image/*"
@@ -36,11 +36,12 @@
               <v-text-field label="E-mail" hide-details="auto"></v-text-field>
             </v-col>
             <v-col>
-              Department:
+              Department
               <v-row align="center">
                 <v-col class="d-flex" cols="6" sm="12">
                   <v-select
                     :items="departments_List"
+                    :rules="department_rule"
                     label="선택하세요"
                     solo
                   ></v-select>
@@ -54,6 +55,7 @@
                 <v-col class="d-flex" cols="6" sm="12">
                   <v-select
                     :items="roles_List"
+                    :rules="role_rule"
                     label="선택하세요"
                     solo
                   ></v-select>
@@ -91,7 +93,9 @@ export default {
       v => /^[0-9]*$/.test(v) || "전화번호는 숫자만 입력 가능합니다.",
       v => (v && v.length >= 10) || "전화번호는 10자 이상 입력해주세요.",
       v => (v && v.length <= 11) || "전화번호는 11자 이하 입력해주세요."
-    ]
+    ],
+    department_rule: [v => !!v || "필수 선택사항입니다."],
+    role_rule: [v => !!v || "필수 선택사항입니다."]
   }),
   methods: {
     upload() {
@@ -104,12 +108,20 @@ export default {
 <style scoped>
 .input-area {
   background: lightgreen;
+  margin: 20px;
 }
-.input-area .flex {
-  margin: 1rem;
+.input-area .v-text-field {
+  margin: 15px 0;
 }
 .image-area {
   background: cornflowerblue;
+  margin: 20px;
+}
+.image-preview {
+  width: 300px;
+  height: 400px;
+  background-color: black;
+  margin: 0 auto;
 }
 .btn-area {
   width: 270px;

@@ -31,7 +31,6 @@ export default {
   background-color: lightsteelblue;
 }
 .user-table-area {
-  height: 1000px;
   background-color: lightslategray;
 }
 </style>
