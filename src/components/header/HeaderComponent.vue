@@ -1,13 +1,13 @@
 <template>
   <v-container>
-    <div class="firstheader">
+    <div class="header">
       <div class="logo">
         <LogoComponent />
       </div>
       <div class="menu">
         <MenuComponent />
       </div>
-      <div class="logoutbutton">
+      <div class="logout-button">
         <LogoutButton />
       </div>
     </div>
@@ -33,7 +33,7 @@ export default {
   background-color: lightblue;
   padding: 10px;
 }
-.firstheader {
+.header {
   display: flex;
   height: 80px;
 }
@@ -41,7 +41,7 @@ export default {
   background-color: wheat;
   width: 25%;
 }
-.logoutbutton {
+.logout-button {
   width: 7%;
   background-color: wheat;
   display: flex;

@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="filter">This is Person Filter</div>
+    <div class="user-filter">This is Person Filter</div>
   </v-container>
 </template>
 
@@ -9,7 +9,7 @@ export default {};
 </script>
 
 <style scoped>
-.filter {
+.user-filter {
   height: 100px;
   background-color: lightseagreen;
 }

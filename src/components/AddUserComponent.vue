@@ -1,9 +1,9 @@
 <template>
   <v-container>
-    <v-form ref="form" lazy-validation>
-      <v-layout column>
-        <v-layout row>
-          <v-flex xs5 class="imageBox">
+    <v-app>
+      <v-form ref="form" lazy-validation>
+        <v-row>
+          <v-col class="image-area">
             Image
             <v-file-input
               @change="upload"
@@ -13,10 +13,10 @@
               class="inputfile"
               prepend-icon="mdi-camera"
             />
-          </v-flex>
+          </v-col>
 
-          <v-flex xs6 class="inputBox">
-            <v-flex>
+          <v-col class="input-area">
+            <v-col>
               <v-text-field
                 v-model="user_name"
                 label="Name"
@@ -24,18 +24,18 @@
                 hide-details="auto"
                 maxlength="20"
               ></v-text-field>
-            </v-flex>
-            <v-flex>
+            </v-col>
+            <v-col>
               <v-text-field
                 :rules="user_phone_number_rule"
                 label="Phone Number"
                 hide-details="auto"
               ></v-text-field>
-            </v-flex>
-            <v-flex>
+            </v-col>
+            <v-col>
               <v-text-field label="E-mail" hide-details="auto"></v-text-field>
-            </v-flex>
-            <v-flex>
+            </v-col>
+            <v-col>
               Department:
               <v-row align="center">
                 <v-col class="d-flex" cols="6" sm="12">
@@ -46,9 +46,9 @@
                   ></v-select>
                 </v-col>
               </v-row>
-            </v-flex>
+            </v-col>
 
-            <v-flex>
+            <v-col>
               Role:
               <v-row align="center">
                 <v-col class="d-flex" cols="6" sm="12">
@@ -59,19 +59,26 @@
                   ></v-select>
                 </v-col>
               </v-row>
-            </v-flex>
-          </v-flex>
-        </v-layout>
-      </v-layout>
-    </v-form>
+            </v-col>
+          </v-col>
+        </v-row>
+      </v-form>
+      <div class="btn-area">
+        <v-btn elevation="2">Add</v-btn>
+        <v-btn elevation="2">Cancel</v-btn>
+      </div>
+    </v-app>
   </v-container>
 </template>
 
 <script>
+const departmanet_List = ["Foo", "Bar", "Fizz", "Buzz"];
+const roles_List = ["Master", "Manager", "Labeler"];
+
 export default {
   data: () => ({
-    departments_List: ["Foo", "Bar", "Fizz", "Buzz"],
-    roles_List: ["Master", "Manager", "Labeler"],
+    departments_List: departmanet_List,
+    roles_List: roles_List,
     user_name: "",
     user_name_rule: [
       v => !!v || "이름은 필수 입력사항입니다.",
@@ -95,11 +102,22 @@ export default {
 </script>
 
 <style scoped>
-.inputBox {
-  margin: 2rem;
+.input-area {
+  background: lightgreen;
 }
-
-.inputBox .flex {
+.input-area .flex {
   margin: 1rem;
+}
+.image-area {
+  background: cornflowerblue;
+}
+.btn-area {
+  width: 270px;
+  margin-left: auto;
+  margin-top: auto;
+}
+.v-btn {
+  width: 100px;
+  margin: 15px;
 }
 </style>

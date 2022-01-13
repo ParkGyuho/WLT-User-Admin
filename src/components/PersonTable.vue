@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <div class="persontable">This is Person Table Component</div>
-    <div class="undertable">
+    <div class="user-table">This is Person Table Component</div>
+    <div class="btn-area">
       <router-link to="/adduser">
         <v-btn elevation="2"> Add User </v-btn>
       </router-link>
@@ -15,15 +15,15 @@ export default {};
 </script>
 
 <style scoped>
-.persontable {
+.user-table {
   height: 900px;
   background-color: lightyellow;
 }
-.undertable {
+.btn-area {
   width: 270px;
   margin-left: auto;
 }
-.undertable .v-btn {
+.btn-area .v-btn {
   width: 100px;
   margin: 15px;
 }

@@ -1,9 +1,11 @@
 <template>
   <v-container>
-    <HeaderComponent />
-    <div>
-      <AddUserComponent />
-    </div>
+    <v-app>
+      <HeaderComponent />
+      <div class="adduser-area">
+        <AddUserComponent />
+      </div>
+    </v-app>
   </v-container>
 </template>
 
@@ -19,4 +21,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.adduser-area {
+  background-color: lightgrey;
+}
+</style>

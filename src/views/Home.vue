@@ -1,12 +1,14 @@
 <template>
   <v-container>
-    <HeaderComponent />
-    <div class="personfilter">
-      <PersonFilter />
-    </div>
-    <div class="persontable">
-      <PersonTable />
-    </div>
+    <v-app>
+      <HeaderComponent />
+      <div class="user-filter-area">
+        <PersonFilter />
+      </div>
+      <div class="user-table-area">
+        <PersonTable />
+      </div>
+    </v-app>
   </v-container>
 </template>
 
@@ -25,10 +27,10 @@ export default {
 </script>
 
 <style scoped>
-.personfilter {
+.user-filter-area {
   background-color: lightsteelblue;
 }
-.persontable {
+.user-table-area {
   height: 1000px;
   background-color: lightslategray;
 }
