@@ -4,7 +4,9 @@
       <v-form ref="form" lazy-validation>
         <v-row>
           <v-col class="image-area">
-            <v-col class="image-preview"> Image Preview Area </v-col>
+            <v-col class="image-preview">
+              <img v-if="image_url" :src="image_url" />
+            </v-col>
             <v-file-input
               @change="upload"
               accept="image/*"
@@ -50,7 +52,7 @@
             </v-col>
 
             <v-col>
-              Role:
+              Role
               <v-row align="center">
                 <v-col class="d-flex" cols="6" sm="12">
                   <v-select
@@ -67,18 +69,33 @@
       </v-form>
       <div class="btn-area">
         <v-btn elevation="2">Add</v-btn>
-        <v-btn elevation="2">Cancel</v-btn>
+        <v-btn elevation="2" @click="showModal = true">Cancel</v-btn>
+        <Modal v-if="showModal" @close="showModal = false">
+          <h3 slot="header"></h3>
+
+          <h5 slot="body">유저 등록을 취소하시겠습니까?</h5>
+
+          <button slot="footer" @click="showModal = false">확인</button>
+          <button slot="footer" @click="showModal = false">취소</button>
+        </Modal>
       </div>
     </v-app>
   </v-container>
 </template>
 
 <script>
+import Modal from "./modal/modal";
+
 const departmanet_List = ["Foo", "Bar", "Fizz", "Buzz"];
 const roles_List = ["Master", "Manager", "Labeler"];
 
 export default {
+  components: {
+    Modal
+  },
   data: () => ({
+    image_url: null,
+    showModal: false,
     departments_List: departmanet_List,
     roles_List: roles_List,
     user_name: "",
@@ -98,8 +115,8 @@ export default {
     role_rule: [v => !!v || "필수 선택사항입니다."]
   }),
   methods: {
-    upload() {
-      console.log("upload");
+    upload(e) {
+      this.image_url = URL.createObjectURL(e);
     }
   }
 };
@@ -118,10 +135,13 @@ export default {
   margin: 20px;
 }
 .image-preview {
-  width: 300px;
-  height: 400px;
-  background-color: black;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-preview img {
+  max-width: 100%;
+  max-height: 400px;
 }
 .btn-area {
   width: 270px;

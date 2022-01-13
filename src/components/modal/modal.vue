@@ -5,7 +5,7 @@
         <div class="modal-container">
           <!-- 모달 헤더 -->
           <div class="modal-header">
-            <slot name="header"> default header </slot>
+            <slot name="header"> 경고 </slot>
           </div>
 
           <!-- 모달 바디 -->
@@ -14,7 +14,12 @@
           </div>
 
           <div class="modal-footer">
-            <slot name="footer"> default footer </slot>
+            <slot name="footer">
+              default footer
+              <button class="modal-default-button" @click="$emit('close')">
+                OK
+              </button>
+            </slot>
           </div>
         </div>
       </div>
@@ -55,7 +60,7 @@ export default {};
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.modal-header h3 {
+.modal-header {
   margin-top: 0;
   color: #42b983;
 }
