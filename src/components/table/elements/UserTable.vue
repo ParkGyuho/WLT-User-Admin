@@ -15,6 +15,9 @@ export default {};
 </script>
 
 <style scoped>
+.container {
+  padding-top: 0px;
+}
 .user-table {
   height: 900px;
   background-color: lightyellow;

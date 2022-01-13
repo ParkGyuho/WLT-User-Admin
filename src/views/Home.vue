@@ -3,10 +3,10 @@
     <v-app>
       <HeaderComponent />
       <div class="user-filter-area">
-        <PersonFilter />
+        <UserFilter />
       </div>
       <div class="user-table-area">
-        <PersonTable />
+        <Table />
       </div>
     </v-app>
   </v-container>
@@ -14,14 +14,14 @@
 
 <script>
 import HeaderComponent from "../components/header/HeaderComponent";
-import PersonFilter from "../components/PersonFilter";
-import PersonTable from "../components/PersonTable";
+import UserFilter from "../components/UserFilter";
+import Table from "../components/table/Table";
 
 export default {
   components: {
     HeaderComponent,
-    PersonFilter,
-    PersonTable
+    UserFilter,
+    Table
   }
 };
 </script>
