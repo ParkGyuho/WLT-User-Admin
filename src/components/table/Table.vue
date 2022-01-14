@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="tab-area">
-      <v-btn @click="changeComponent('UserTable')">user</v-btn>
-      <v-btn @click="changeComponent('GroupTable')">group</v-btn>
+      <v-btn @click="changeComponent(TabComponents.USER_TABLE)">user</v-btn>
+      <v-btn @click="changeComponent(TabComponents.GROUP_TABLE)">group</v-btn>
     </div>
     <div>
       <keep-alive>
@@ -16,13 +16,21 @@
 import UserTable from "./elements/UserTable";
 import GroupTable from "./elements/GroupTable.vue";
 
+const TabComponents = Object.freeze({
+  USER_TABLE: "UserTable",
+  GROUP_TABLE: "GroupTable"
+});
+
 export default {
   components: {
     UserTable,
     GroupTable
   },
   data() {
-    return { comp: "UserTable" };
+    return {
+      TabComponents,
+      comp: TabComponents.USER_TABLE
+    };
   },
   methods: {
     changeComponent(componentName) {

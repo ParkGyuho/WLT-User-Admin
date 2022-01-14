@@ -1,14 +1,30 @@
 <template>
   <div class="menu-list">
-    <div class="menu-elements">OVERVIEW</div>
-    <div class="menu-elements">STATISTICS</div>
-    <div class="menu-elements">SEARCH</div>
-    <div class="menu-elements">MY PROFILE</div>
+    <v-footer color="primary">
+      <v-row justify="center" no-gutters>
+        <v-btn
+          v-for="menu in menuList"
+          :key="menu"
+          color="white"
+          text
+          rounded
+          class="my-3"
+        >
+          {{ menu }}
+        </v-btn>
+      </v-row>
+    </v-footer>
   </div>
 </template>
 
 <script>
-export default {};
+const menuList = ["OVERVIEW", "STATISTICS", "SEARCH", "MY PROFILE"];
+
+export default {
+  data: () => ({
+    menuList
+  })
+};
 </script>
 
 <style scoped>
@@ -17,8 +33,5 @@ export default {};
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-}
-.menu-elements:hover {
-  color: red;
 }
 </style>

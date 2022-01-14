@@ -5,10 +5,11 @@
         <v-row>
           <v-col class="image-area">
             <v-col class="image-preview">
-              <img v-if="image_url" :src="image_url" />
+              <img v-if="imageUrl" :src="imageUrl" />
             </v-col>
             <v-file-input
               @change="upload"
+              :rules="dropdownImageRule"
               accept="image/*"
               type="file"
               id="file"
@@ -20,16 +21,16 @@
           <v-col class="input-area">
             <v-col>
               <v-text-field
-                v-model="user_name"
+                v-model="userName"
                 label="Name"
-                :rules="user_name_rule"
+                :rules="userNameRule"
                 hide-details="auto"
                 maxlength="20"
               ></v-text-field>
             </v-col>
             <v-col>
               <v-text-field
-                :rules="user_phone_number_rule"
+                :rules="userPhoneNumberRule"
                 label="Phone Number"
                 hide-details="auto"
               ></v-text-field>
@@ -42,8 +43,8 @@
               <v-row align="center">
                 <v-col class="d-flex" cols="6" sm="12">
                   <v-select
-                    :items="departments_List"
-                    :rules="department_rule"
+                    :items="departmentsList"
+                    :rules="dropdownImageRule"
                     label="선택하세요"
                     solo
                   ></v-select>
@@ -56,8 +57,8 @@
               <v-row align="center">
                 <v-col class="d-flex" cols="6" sm="12">
                   <v-select
-                    :items="roles_List"
-                    :rules="role_rule"
+                    :items="rolesList"
+                    :rules="dropdownImageRule"
                     label="선택하세요"
                     solo
                   ></v-select>
@@ -86,37 +87,36 @@
 <script>
 import Modal from "./modal/modal";
 
-const departmanet_List = ["Foo", "Bar", "Fizz", "Buzz"];
-const roles_List = ["Master", "Manager", "Labeler"];
+const departmanetList = ["Foo", "Bar", "Fizz", "Buzz"];
+const rolesList = ["Master", "Manager", "Labeler"];
 
 export default {
   components: {
     Modal
   },
   data: () => ({
-    image_url: null,
+    imageUrl: null,
     showModal: false,
-    departments_List: departmanet_List,
-    roles_List: roles_List,
-    user_name: "",
-    user_name_rule: [
+    departmentsList: departmanetList,
+    rolesList: rolesList,
+    userName: "",
+    userNameRule: [
       v => !!v || "이름은 필수 입력사항입니다.",
       v => /^[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]*$/.test(v) || "이름은 한글만 입력 가능합니다.",
       v => !(v && v.length >= 10) || "이름은 10자 이상 입력할 수 없습니다.",
       v => !(v && v.length <= 1) || "2자 이상 입력해주세요."
     ],
-    user_phone_number_rule: [
+    userPhoneNumberRule: [
       v => !!v || "전화번호는 필수 입력사항입니다.",
       v => /^[0-9]*$/.test(v) || "전화번호는 숫자만 입력 가능합니다.",
       v => (v && v.length >= 10) || "전화번호는 10자 이상 입력해주세요.",
       v => (v && v.length <= 11) || "전화번호는 11자 이하 입력해주세요."
     ],
-    department_rule: [v => !!v || "필수 선택사항입니다."],
-    role_rule: [v => !!v || "필수 선택사항입니다."]
+    dropdownImageRule: [v => !!v || "필수 선택사항입니다."]
   }),
   methods: {
     upload(e) {
-      this.image_url = URL.createObjectURL(e);
+      this.imageUrl = URL.createObjectURL(e);
     }
   }
 };
