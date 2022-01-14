@@ -4,6 +4,14 @@
   </div>
 </template>
 
-<script></script>
+<script>
+import { UserAPI } from "./services";
+
+export default {
+  async created() {
+    await UserAPI.login();
+  }
+};
+</script>
 
 <style></style>
