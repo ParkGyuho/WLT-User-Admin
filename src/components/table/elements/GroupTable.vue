@@ -1,11 +1,28 @@
 <template>
   <v-container>
-    <div class="user-table">This is Group Table Component</div>
+    <div class="user-table">
+      <div v-for="(group, index) in this.groups" :key="index">
+        {{ group }}
+      </div>
+    </div>
   </v-container>
 </template>
 
 <script>
-export default {};
+import { showGroupApi } from "../../api/index";
+
+export default {
+  data() {
+    return {
+      groups: {}
+    };
+  },
+  created() {
+    showGroupApi()
+      .then(response => (this.groups = response.data))
+      .catch(error => console.log(error));
+  }
+};
 </script>
 
 <style scoped>

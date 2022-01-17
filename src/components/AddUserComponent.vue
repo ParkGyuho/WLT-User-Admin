@@ -88,7 +88,7 @@
 import Modal from "./modal/modal";
 
 const departmanetList = ["Foo", "Bar", "Fizz", "Buzz"];
-const rolesList = ["Master", "Manager", "Labeler"];
+const rolesList = ["Master", "Manager", "Worker"];
 
 export default {
   components: {

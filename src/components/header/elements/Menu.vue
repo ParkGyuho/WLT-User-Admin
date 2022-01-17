@@ -29,7 +29,7 @@ export default {
 
 <style scoped>
 .menu-list {
-  height: 80px;
+  height: 60px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

@@ -1,5 +1,7 @@
 <template>
-  <div class="logo">STARDVISION<br />web labeling tool</div>
+  <div class="logo">
+    <font-awesome-icon class="fa-4x" icon="blog" />
+  </div>
 </template>
 
 <script>
@@ -9,7 +11,7 @@ export default {};
 <style scoped>
 .logo {
   display: flex;
-  height: 80px;
+  height: 60px;
   justify-content: center;
   align-items: center;
 }

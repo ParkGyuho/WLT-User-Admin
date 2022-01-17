@@ -1,16 +1,16 @@
 <template>
   <v-container>
-    <div class="header">
-      <div class="logo-area">
+    <v-row class="header">
+      <v-col cols="2" class="logo-area">
         <LogoComponent />
-      </div>
-      <div class="menu-area">
+      </v-col>
+      <v-col cols="8" class="menu-area">
         <MenuComponent />
-      </div>
-      <div class="logout-button">
+      </v-col>
+      <v-col cols="1" class="logout-button">
         <LogoutButton />
-      </div>
-    </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -31,25 +31,19 @@ export default {
 <style scoped>
 .container {
   background-color: lightblue;
-  padding: 10px;
-}
-.header {
-  display: flex;
-  height: 80px;
 }
 .logo-area {
   background-color: wheat;
-  width: 25%;
+  width: 15%;
 }
 .logout-button {
-  width: 7%;
   background-color: wheat;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .menu-area {
-  width: 65%;
+  width: 70%;
   margin: 0 auto;
   background-color: wheat;
   align-items: center;

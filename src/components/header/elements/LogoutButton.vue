@@ -1,5 +1,7 @@
 <template>
-  <v-btn elevation="5"> Logout </v-btn>
+  <div>
+    <font-awesome-icon class="fa-1x" icon="sign-out-alt" />
+  </div>
 </template>
 
 <script>
