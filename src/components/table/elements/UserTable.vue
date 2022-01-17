@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { showUserApi } from "../../api/index";
+import { showUserApi } from "../../../services/getdata";
 export default {
   data() {
     return {
@@ -42,6 +42,7 @@ export default {
         { text: "Status", value: "status" },
         { text: "Id", value: "_id" },
         { text: "User type", value: "user_type" },
+        { text: "User name", value: "user_name" },
         { text: "Login id", value: "login_id" },
         { text: "Created at", value: "created_at" },
         { text: "Updated at", value: "updated_at" }

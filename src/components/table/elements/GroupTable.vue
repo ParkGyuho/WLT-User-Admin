@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { showGroupApi } from "../../api/index";
+import { showGroupApi } from "../../../services/getdata";
 
 export default {
   data() {

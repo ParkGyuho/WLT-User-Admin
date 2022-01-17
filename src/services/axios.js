@@ -5,7 +5,6 @@ const axiosInstance = axios.create({ baseURL: baseURL });
 
 const getToken = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
-
   return user ? user.token : null;
 };
 
@@ -16,4 +15,6 @@ axiosInstance.interceptors.request.use(function (config) {
   return config;
 });
 
-export default axiosInstance;
+export default { axiosInstance };
+export { getToken };
+export { baseURL };

@@ -6,7 +6,7 @@
     </div>
     <div>
       <keep-alive>
-        <component :is="comp"></component>
+        <component :is="currentTab"></component>
       </keep-alive>
     </div>
   </div>
@@ -29,12 +29,12 @@ export default {
   data() {
     return {
       TabComponents,
-      comp: TabComponents.USER_TABLE
+      currentTab: TabComponents.USER_TABLE
     };
   },
   methods: {
     changeComponent(componentName) {
-      this.comp = componentName;
+      this.currentTab = componentName;
     }
   }
 };
