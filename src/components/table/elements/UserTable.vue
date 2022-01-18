@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="user-table">{{ this.data }}</div>
+    <div class="user-table">{{ users }}</div>
     <div class="btn-area">
       <router-link to="/adduser">
         <v-btn elevation="2"> Add User </v-btn>
@@ -11,11 +11,18 @@
 </template>
 
 <script>
+import { UserAPI } from "../../../services";
+
 export default {
   data() {
     return {
-      data: sessionStorage.getItem("data")
+      users: []
     };
+  },
+  async created() {
+    await UserAPI.login();
+    const users = await UserAPI.getUsers();
+    this.users = users;
   }
 };
 </script>
