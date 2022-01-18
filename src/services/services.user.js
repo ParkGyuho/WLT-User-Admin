@@ -5,6 +5,7 @@ class UserAPI {
   constructor() {
     async function login() {
       let response = null;
+      let getData = null;
 
       try {
         const data = {
@@ -12,6 +13,7 @@ class UserAPI {
           password: USER
         };
         response = await axios.post("/api/user/login", data);
+        getData = await axios.get("/api/users");
         if (response.data.token) {
           const userData = {
             name: response.data.user.user_name,
@@ -22,13 +24,13 @@ class UserAPI {
           };
 
           sessionStorage.setItem("user", JSON.stringify(userData));
+          sessionStorage.setItem("data", JSON.stringify(getData.data));
 
           return userData;
         }
       } catch (error) {
         throw new Error(error);
       }
-
       return response.data;
     }
 

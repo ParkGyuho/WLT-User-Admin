@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="user-table">This is Person Table Component</div>
+    <div class="user-table">{{ this.data }}</div>
     <div class="btn-area">
       <router-link to="/adduser">
         <v-btn elevation="2"> Add User </v-btn>
@@ -11,7 +11,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      data: sessionStorage.getItem("data")
+    };
+  }
+};
 </script>
 
 <style scoped>
