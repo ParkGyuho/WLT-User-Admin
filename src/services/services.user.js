@@ -42,6 +42,13 @@ class UserAPI {
       return getData.data;
     }
 
+    async function getGroups() {
+      let getGroup = null;
+      getGroup = await axios.get("/api/groups");
+
+      return getGroup.data;
+    }
+
     Object.defineProperties(this, {
       login: {
         value: login,
@@ -53,6 +60,10 @@ class UserAPI {
       },
       getUsers: {
         value: getUsers,
+        writable: false
+      },
+      getGroups: {
+        value: getGroups,
         writable: false
       }
     });
