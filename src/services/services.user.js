@@ -28,12 +28,18 @@ class UserAPI {
       } catch (error) {
         throw new Error(error);
       }
-
       return response.data;
     }
 
     function logout() {
       sessionStorage.removeItem("user");
+    }
+
+    async function getUsers() {
+      let getData = null;
+      getData = await axios.get("/api/users");
+
+      return getData.data;
     }
 
     Object.defineProperties(this, {
@@ -43,6 +49,10 @@ class UserAPI {
       },
       logout: {
         value: logout,
+        writable: false
+      },
+      getUsers: {
+        value: getUsers,
         writable: false
       }
     });
