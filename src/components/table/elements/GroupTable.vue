@@ -40,7 +40,6 @@ export default {
     };
   },
   async created() {
-    await UserAPI.login();
     const groups = await UserAPI.getGroups();
     this.groups = groups;
   }
