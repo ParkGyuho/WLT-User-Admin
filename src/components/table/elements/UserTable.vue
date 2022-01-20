@@ -12,6 +12,14 @@
         :items-per-page="itemsPerPage"
         @page-count="pageCount = $event"
       >
+        <template v-slot:item.detail_info="{ item }">
+          <v-btn @click="showlog(item)"> Detail </v-btn>
+          <v-dialog v-model="showDialog">
+            <v-card>
+              {{ detailUser }}
+            </v-card>
+          </v-dialog>
+        </template>
       </v-data-table>
       <v-pagination v-model="page" :length="pageCount"> </v-pagination>
     </div>
@@ -35,17 +43,25 @@ export default {
       page: 1,
       pageCount: 0,
       itemsPerPage: 15,
+      showDialog: false,
+      detailUser: {},
       headers: [
         { text: "User Name", value: "user_name" },
         { text: "Login ID", value: "login_id" },
-        { text: "User Type", value: "user_type" }
+        { text: "User Type", value: "user_type" },
+        { text: "Detail Info.", value: "detail_info", sortable: false }
       ]
     };
   },
   async created() {
-    await UserAPI.login();
     const users = await UserAPI.getUsers();
     this.users = users;
+  },
+  methods: {
+    showlog(item) {
+      this.showDialog = !this.showDialog;
+      this.detailUser = item;
+    }
   }
 };
 </script>
