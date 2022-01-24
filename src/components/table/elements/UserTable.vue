@@ -19,7 +19,7 @@
             max-width="700px"
             :retain-focus="false"
           >
-            <v-card>
+            <v-card v-if="!editmode">
               <v-card-title class="text-h4"> Detail Infomation </v-card-title>
               <v-divider></v-divider>
               <v-card-text>
@@ -42,7 +42,35 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="editUser(item)"> Modify </v-btn>
+                <v-btn @click="editUser(detailUser)"> Edit </v-btn>
+                <v-btn @click="showDialog = false"> Close </v-btn>
+              </v-card-actions>
+            </v-card>
+            <v-card v-else>
+              <v-card-title class="text-h4"> Detail Infomation </v-card-title>
+              <v-divider></v-divider>
+              <v-card-text>
+                <v-container>
+                  <v-row>
+                    <v-col cols="5" class="dialog-image-side">
+                      <div class="dialog-image"></div>
+                    </v-col>
+                    <v-col cols="7" class="dialog-info-side">
+                      <div
+                        class="text-h6 text--primary"
+                        v-for="(info, prop, index) in detailUser"
+                        :key="index"
+                      >
+                        {{ prop }} :
+                        <v-text-field v-model="detailUser[prop]"></v-text-field>
+                      </div>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card-text>
+              <v-card-actions>
+                <v-spacer></v-spacer>
+                <v-btn @click="saveUser(detailUser)"> Save </v-btn>
                 <v-btn @click="showDialog = false"> Close </v-btn>
               </v-card-actions>
             </v-card>
@@ -72,6 +100,7 @@ export default {
       pageCount: 0,
       itemsPerPage: 15,
       showDialog: false,
+      editmode: false,
       detailUser: [],
       headers: [
         { text: "User Name", value: "user_name" },
@@ -92,6 +121,13 @@ export default {
     },
     editUser(item) {
       console.log(item);
+      console.log(this.users.indexOf(item));
+      this.editmode = true;
+    },
+    saveUser(item) {
+      console.log(item);
+      this.showDialog = false;
+      this.editmode = false;
     }
   }
 };
