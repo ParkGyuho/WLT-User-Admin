@@ -18,23 +18,30 @@
             v-model="showDialog"
             max-width="700px"
             :retain-focus="false"
+            v-if="!editmode"
           >
-            <v-card v-if="!editmode">
+            <v-card>
               <v-card-title class="text-h4"> Detail Infomation </v-card-title>
               <v-divider></v-divider>
               <v-card-text>
                 <v-container>
                   <v-row>
-                    <v-col cols="5" class="dialog-image-side">
-                      <div class="dialog-image"></div>
+                    <v-col cols="12" class="avatar">
+                      <v-avatar color="warning lighten-2" size="150"
+                        >avatar</v-avatar
+                      >
                     </v-col>
-                    <v-col cols="7" class="dialog-info-side">
+                    <v-col cols="12" class="text-h3 avatar">
+                      {{ detailUser.user_name }}
+                    </v-col>
+
+                    <v-col cols="12" class="dialog-info-side">
                       <div
-                        class="text-h6 text--primary"
+                        class="text-h5 mb-2"
                         v-for="(info, prop, index) in detailUser"
                         :key="index"
                       >
-                        {{ prop }} :{{ info }}
+                        <div class="text-h6 mb-3">{{ prop }} :{{ info }}</div>
                       </div>
                     </v-col>
                   </v-row>
@@ -42,27 +49,53 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="editUser(detailUser)"> Edit </v-btn>
-                <v-btn @click="showDialog = false"> Close </v-btn>
+                <v-btn @click="editUser()"> Edit </v-btn>
+                <v-btn @click="closeLog()"> Close </v-btn>
               </v-card-actions>
             </v-card>
-            <v-card v-else>
+          </v-dialog>
+          <v-dialog
+            v-model="showDialog"
+            max-width="700px"
+            :retain-focus="false"
+            v-else
+            persistent
+          >
+            <v-card>
               <v-card-title class="text-h4"> Detail Infomation </v-card-title>
               <v-divider></v-divider>
               <v-card-text>
                 <v-container>
                   <v-row>
-                    <v-col cols="5" class="dialog-image-side">
-                      <div class="dialog-image"></div>
+                    <v-col cols="12" class="avatar">
+                      <v-avatar color="warning lighten-2" size="150"
+                        >avatar</v-avatar
+                      >
                     </v-col>
-                    <v-col cols="7" class="dialog-info-side">
+                    <v-col cols="12" class="text-h3 avatar">
+                      {{ detailUser.user_name }}
+                    </v-col>
+                    <v-col cols="12" class="dialog-info-side">
                       <div
-                        class="text-h6 text--primary"
+                        class="text-h5 mb-2"
                         v-for="(info, prop, index) in detailUser"
                         :key="index"
                       >
                         {{ prop }} :
-                        <v-text-field v-model="detailUser[prop]"></v-text-field>
+                        <v-select
+                          v-if="prop == 'status'"
+                          v-model="detailUser[prop]"
+                          :items="status_List"
+                        ></v-select>
+                        <v-select
+                          v-else-if="prop == 'user_type'"
+                          :items="roles_List"
+                          v-model="detailUser[prop]"
+                        ></v-select>
+                        <v-text-field
+                          v-else
+                          v-model="detailUser[prop]"
+                        ></v-text-field>
                       </div>
                     </v-col>
                   </v-row>
@@ -70,8 +103,8 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="saveUser(detailUser)"> Save </v-btn>
-                <v-btn @click="showDialog = false"> Close </v-btn>
+                <v-btn @click="saveUser()"> Save </v-btn>
+                <v-btn @click="closeLog()"> Close </v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -91,10 +124,14 @@
 <script>
 import { UserAPI } from "../../../services";
 
+const status_List = ["Activated", "Inactivated"];
+const roles_List = ["Master", "Manager", "Worker"];
+
 export default {
   data() {
     return {
       users: [],
+      beforeEditedUsers: [],
       selected: [],
       page: 1,
       pageCount: 0,
@@ -102,6 +139,8 @@ export default {
       showDialog: false,
       editmode: false,
       detailUser: [],
+      roles_List: roles_List,
+      status_List: status_List,
       headers: [
         { text: "User Name", value: "user_name" },
         { text: "Login ID", value: "login_id" },
@@ -113,19 +152,23 @@ export default {
   async created() {
     const users = await UserAPI.getUsers();
     this.users = users;
+    this.beforeEditedUsers = JSON.parse(JSON.stringify(users));
   },
   methods: {
     showlog(item) {
-      this.showDialog = !this.showDialog;
+      this.showDialog = true;
       this.detailUser = item;
     },
-    editUser(item) {
-      console.log(item);
-      console.log(this.users.indexOf(item));
+    editUser() {
       this.editmode = true;
     },
-    saveUser(item) {
-      console.log(item);
+    saveUser() {
+      this.beforeEditedUsers = JSON.parse(JSON.stringify(this.users));
+      this.showDialog = false;
+      this.editmode = false;
+    },
+    closeLog() {
+      this.users = JSON.parse(JSON.stringify(this.beforeEditedUsers));
       this.showDialog = false;
       this.editmode = false;
     }
@@ -157,10 +200,10 @@ export default {
 .dialog-info-side {
   background-color: lightgrey;
 }
-.dialog-image {
-  background-color: lightpink;
-  width: 210px;
-  height: 250px;
-  margin: 12px auto;
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightyellow;
 }
 </style>
