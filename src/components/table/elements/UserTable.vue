@@ -28,7 +28,9 @@
                   <v-row>
                     <v-col cols="12" class="avatar">
                       <v-avatar color="warning lighten-2" size="150"
-                        >avatar</v-avatar
+                        ><v-icon size="150"
+                          >mdi-account-circle</v-icon
+                        ></v-avatar
                       >
                     </v-col>
                     <v-col cols="12" class="text-h3 avatar">
@@ -69,7 +71,9 @@
                   <v-row>
                     <v-col cols="12" class="avatar">
                       <v-avatar color="warning lighten-2" size="150"
-                        >avatar</v-avatar
+                        ><v-icon size="150"
+                          >mdi-account-circle</v-icon
+                        ></v-avatar
                       >
                     </v-col>
                     <v-col cols="12" class="text-h3 avatar">
@@ -103,7 +107,7 @@
               </v-card-text>
               <v-card-actions>
                 <v-spacer></v-spacer>
-                <v-btn @click="saveUser()"> Save </v-btn>
+                <v-btn @click="saveUser(detailUser)"> Save </v-btn>
                 <v-btn @click="closeLog()"> Close </v-btn>
               </v-card-actions>
             </v-card>
@@ -116,7 +120,7 @@
       <router-link to="/adduser">
         <v-btn elevation="2"> Add User </v-btn>
       </router-link>
-      <v-btn elevation="2"> Delete User </v-btn>
+      <v-btn elevation="2" @click="deleteUser()"> Delete User </v-btn>
     </div>
   </v-container>
 </template>
@@ -162,7 +166,13 @@ export default {
     editUser() {
       this.editmode = true;
     },
-    saveUser() {
+    async saveUser(user) {
+      const beforeEditedInfo = this.beforeEditedUsers[this.users.indexOf(user)];
+      const afterEditedInfo = user;
+
+      if (user.user_name == "demo") {
+        await UserAPI.uploadUser(beforeEditedInfo, afterEditedInfo);
+      }
       this.beforeEditedUsers = JSON.parse(JSON.stringify(this.users));
       this.showDialog = false;
       this.editmode = false;
@@ -171,6 +181,12 @@ export default {
       this.users = JSON.parse(JSON.stringify(this.beforeEditedUsers));
       this.showDialog = false;
       this.editmode = false;
+    },
+    deleteUser() {
+      //this.users가 얕은 참조라 다른 짓 하면 다시 돌아옴;; 수정예정
+      this.users = this.users.filter(v => {
+        return !this.selected.includes(v);
+      });
     }
   }
 };

@@ -1,5 +1,6 @@
 import axios from "./axios";
-const USER = "mark";
+// const USER = "mark";
+let DEMO = "demo";
 
 class UserAPI {
   constructor() {
@@ -8,9 +9,10 @@ class UserAPI {
 
       try {
         const data = {
-          login_id: USER,
-          password: USER
+          login_id: "demo",
+          password: DEMO
         };
+
         response = await axios.post("/api/user/login", data);
         if (response.data.token) {
           const userData = {
@@ -49,6 +51,24 @@ class UserAPI {
       return getGroup.data;
     }
 
+    async function uploadUser(pre_info, post_info) {
+      let uploadedUser = null;
+
+      try {
+        const data = {
+          login_id: "demo",
+          new_password: post_info.login_id,
+          pre_password: pre_info.login_id
+        };
+        uploadedUser = await axios.put("/api/user", data);
+        console.log(uploadedUser);
+        DEMO = data.new_password;
+        console.log(DEMO);
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+
     Object.defineProperties(this, {
       login: {
         value: login,
@@ -64,6 +84,10 @@ class UserAPI {
       },
       getGroups: {
         value: getGroups,
+        writable: false
+      },
+      uploadUser: {
+        value: uploadUser,
         writable: false
       }
     });
