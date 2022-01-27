@@ -1,13 +1,9 @@
 <template>
-  <v-btn elevation="5"> Logout </v-btn>
+  <font-awesome-icon class="fa-1x" icon="sign-out-alt" />
 </template>
 
 <script>
 export default {};
 </script>
 
-<style scoped>
-.v-btn {
-  width: 60px;
-}
-</style>
+<style scoped></style>

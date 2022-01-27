@@ -16,7 +16,6 @@ export default {};
 
 <style scoped>
 .user-filter {
-  height: 100px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;

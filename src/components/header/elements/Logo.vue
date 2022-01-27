@@ -1,5 +1,12 @@
 <template>
-  <div class="logo">STARDVISION<br />web labeling tool</div>
+  <div class="logo">
+    <div class="hidden-sm-and-down font-weight-black">
+      STARDVISION<br />WEB LABELING TOOL
+    </div>
+    <div class="hidden-md-and-up font-weight-black">
+      STARDVISION<br />WEB LABELING TOOL
+    </div>
+  </div>
 </template>
 
 <script>
@@ -8,9 +15,10 @@ export default {};
 
 <style scoped>
 .logo {
-  display: flex;
-  height: 80px;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+  font-size: 16px;
+}
+.hidden-md-and-up {
+  font-size: 12px;
 }
 </style>

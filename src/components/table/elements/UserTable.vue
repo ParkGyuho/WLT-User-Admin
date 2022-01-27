@@ -37,7 +37,7 @@
                       {{ detailUser.user_name }}
                     </v-col>
 
-                    <v-col cols="12" class="dialog-info-side">
+                    <v-row class="dialog-info-side">
                       <div
                         class="text-h5 mb-2"
                         v-for="(info, prop, index) in detailUser"
@@ -45,7 +45,7 @@
                       >
                         <div class="text-h6 mb-3">{{ prop }} :{{ info }}</div>
                       </div>
-                    </v-col>
+                    </v-row>
                   </v-row>
                 </v-container>
               </v-card-text>
@@ -79,7 +79,7 @@
                     <v-col cols="12" class="text-h3 avatar">
                       {{ detailUser.user_name }}
                     </v-col>
-                    <v-col cols="12" class="dialog-info-side">
+                    <v-row class="dialog-info-side">
                       <div
                         class="text-h5 mb-2"
                         v-for="(info, prop, index) in detailUser"
@@ -101,7 +101,7 @@
                           v-model="detailUser[prop]"
                         ></v-text-field>
                       </div>
-                    </v-col>
+                    </v-row>
                   </v-row>
                 </v-container>
               </v-card-text>

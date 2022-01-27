@@ -1,15 +1,15 @@
 <template>
-  <v-container>
-    <v-app>
+  <v-app>
+    <v-app-bar color="#F2F4F4">
       <HeaderComponent />
-      <div class="user-filter-area">
-        <UserFilter />
-      </div>
-      <div class="user-table-area">
-        <Table />
-      </div>
-    </v-app>
-  </v-container>
+    </v-app-bar>
+    <v-row class="user-filter-area">
+      <UserFilter />
+    </v-row>
+    <div class="user-table-area">
+      <Table />
+    </div>
+  </v-app>
 </template>
 
 <script>
