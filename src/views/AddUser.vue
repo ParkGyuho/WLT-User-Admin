@@ -1,12 +1,12 @@
 <template>
-  <v-container>
-    <v-app>
+  <v-app>
+    <v-app-bar color="#F2F4F4">
       <HeaderComponent />
-      <div class="adduser-area">
-        <AddUserComponent />
-      </div>
-    </v-app>
-  </v-container>
+    </v-app-bar>
+    <div class="adduser-area">
+      <AddUserComponent />
+    </div>
+  </v-app>
 </template>
 
 <script>
@@ -23,6 +23,6 @@ export default {
 
 <style scoped>
 .adduser-area {
-  background-color: lightgrey;
+  background-color: #e5e8e8;
 }
 </style>

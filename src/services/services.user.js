@@ -1,5 +1,5 @@
 import axios from "./axios";
-// const USER = "mark";
+const USER = "mark";
 let DEMO = "demo";
 
 class UserAPI {
@@ -9,8 +9,8 @@ class UserAPI {
 
       try {
         const data = {
-          login_id: "demo",
-          password: DEMO
+          login_id: USER,
+          password: USER
         };
 
         response = await axios.post("/api/user/login", data);

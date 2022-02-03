@@ -2,8 +2,8 @@
   <v-container>
     <v-app>
       <v-form ref="form" lazy-validation>
-        <v-row>
-          <v-col class="image-area">
+        <v-row class="align-center">
+          <v-col cols="5" class="image-area">
             <v-col class="image-preview">
               <img v-if="image_url" :src="image_url" />
             </v-col>
@@ -17,7 +17,7 @@
             />
           </v-col>
 
-          <v-col class="input-area">
+          <v-col cols="4" class="input-area">
             <v-col>
               <v-text-field
                 v-model="user_name"
@@ -151,5 +151,9 @@ export default {
 .v-btn {
   width: 100px;
   margin: 15px;
+}
+.align-center {
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>

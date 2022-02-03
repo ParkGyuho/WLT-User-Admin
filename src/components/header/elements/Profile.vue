@@ -6,7 +6,9 @@
       >
     </v-col>
     <v-col cols="6">
-      {{ loginID }}
+      <v-btn text color="black" class="font-weight-regular">{{
+        loginID
+      }}</v-btn>
     </v-col>
   </v-row>
 </template>
@@ -26,7 +28,7 @@ export default {
 };
 </script>
 
-<style scope>
+<style scoped>
 .col {
   display: flex;
   justify-content: space-evenly;
