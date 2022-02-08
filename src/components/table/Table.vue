@@ -12,14 +12,18 @@
         >
         <v-spacer></v-spacer>
         <div class="filter-btn">
-          <v-dialog v-model="showFilter" width="600" persistent>
+          <v-dialog v-model="showFilter" width="540" persistent>
             <template v-slot:activator="{ on, attrs }">
               <v-btn color="secondary" v-bind="attrs" v-on="on">
-                Table Filter
+                <font-awesome-icon class="fa-x" icon="filter" />
               </v-btn>
             </template>
             <UserFilter @closeFilter="closeFilter" />
           </v-dialog>
+          <v-btn color="secondary" @click="removeFilter">
+            <font-awesome-icon class="fa-x" icon="filter" />
+            <font-awesome-icon class="fa-x" icon="times" />
+          </v-btn>
         </div>
       </v-tabs>
     </v-row>
@@ -61,6 +65,9 @@ export default {
     },
     closeFilter() {
       this.showFilter = false;
+    },
+    removeFilter() {
+      this.$store.dispatch("getUsers");
     }
   }
 };
@@ -73,10 +80,12 @@ export default {
 .filter-btn {
   display: flex;
   align-items: center;
-  margin: 10px;
+  margin: 15px;
 }
-
 .table-area {
   margin-top: 0px;
+}
+.v-btn {
+  margin: 0 5px;
 }
 </style>

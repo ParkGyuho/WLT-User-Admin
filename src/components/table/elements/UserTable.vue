@@ -4,7 +4,7 @@
       <v-data-table
         v-model="selected"
         :headers="headers"
-        :items="users"
+        :items="this.$store.state.users"
         item-key="_id"
         show-select
         hide-default-footer
@@ -149,7 +149,6 @@
 <script>
 import { UserAPI } from "../../../services";
 
-const status_List = ["Activated", "Inactivated"];
 const roles_List = ["Master", "Manager", "Worker"];
 
 export default {
@@ -165,7 +164,6 @@ export default {
       editmode: false,
       detailUser: [],
       roles_List: roles_List,
-      status_List: status_List,
       headers: [
         { text: "User Name", value: "user_name" },
         { text: "Login ID", value: "login_id" },
@@ -185,7 +183,7 @@ export default {
       mainInfo.phone_number = this.detailUser.phone_number;
 
       for (const key in mainInfo) {
-        if (mainInfo[key] == undefined) {
+        if (!mainInfo[key]) {
           mainInfo[key] = "none";
         }
       }
@@ -203,8 +201,9 @@ export default {
       return SubInfo;
     }
   },
-  async created() {
-    const users = await UserAPI.getUsers();
+  created() {
+    this.$store.dispatch("getUsers");
+    const users = this.$store.state.users;
     this.users = users;
     this.beforeEditedUsers = JSON.parse(JSON.stringify(users));
   },
@@ -233,8 +232,8 @@ export default {
       this.editmode = false;
     },
     deleteUser() {
-      //this.users가 얕은 참조라 다른 짓 하면 다시 돌아옴;; 수정예정
-      this.users = this.users.filter(v => {
+      //remove filter를 누르면 다시 돌아옴;; 수정예정
+      this.$store.state.users = this.$store.state.users.filter(v => {
         return !this.selected.includes(v);
       });
     }
