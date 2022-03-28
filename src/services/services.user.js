@@ -1,5 +1,5 @@
 import axios from "./axios";
-// const USER = "mark";
+const USER = "mark";
 let DEMO = "demo";
 
 class UserAPI {
@@ -9,8 +9,8 @@ class UserAPI {
 
       try {
         const data = {
-          login_id: "demo",
-          password: DEMO
+          login_id: USER,
+          password: USER
         };
 
         response = await axios.post("/api/user/login", data);
@@ -69,6 +69,17 @@ class UserAPI {
       }
     }
 
+    async function addUser(data) {
+      let response = null;
+
+      try {
+        response = await axios.post("/api/user", data);
+      } catch (error) {
+        throw new Error(error);
+      }
+      return response.data;
+    }
+
     Object.defineProperties(this, {
       login: {
         value: login,
@@ -88,6 +99,10 @@ class UserAPI {
       },
       uploadUser: {
         value: uploadUser,
+        writable: false
+      },
+      addUser: {
+        value: addUser,
         writable: false
       }
     });

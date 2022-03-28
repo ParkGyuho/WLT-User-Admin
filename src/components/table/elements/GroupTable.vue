@@ -50,7 +50,4 @@ export default {
 .container {
   padding-top: 0px;
 }
-.user-table {
-  background-color: lightyellow;
-}
 </style>
