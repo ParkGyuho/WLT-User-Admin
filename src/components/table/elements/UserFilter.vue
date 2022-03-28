@@ -25,7 +25,7 @@
         <v-col cols="4">
           <v-select
             v-if="filter.column_name == 'User type'"
-            :items="roles_List"
+            :items="userTypeList"
             v-model="filter.value"
             clearable
           ></v-select>
@@ -73,14 +73,14 @@ const column_List = {
   "Mail address": "mail_address",
   "Phone number": "phone_number"
 };
-const roles_List = ["Master", "Manager", "Worker"];
+const userTypeList = ["Master", "Manager", "Worker"];
 
 export default {
   data() {
     return {
       filterArray: [{ column_name: null, value: null }],
       column_List: column_List,
-      roles_List: roles_List,
+      userTypeList: userTypeList,
       users: [],
       disableFilter: true
     };

@@ -27,9 +27,6 @@ export default {
 .v-app-bar {
   flex-grow: 0;
 }
-.user-filter-area {
-  background-color: lightsteelblue;
-}
 .user-table-area {
   background-color: #e5e8e8;
 }

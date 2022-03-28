@@ -69,6 +69,17 @@ class UserAPI {
       }
     }
 
+    async function addUser(data) {
+      let response = null;
+
+      try {
+        response = await axios.post("/api/user", data);
+      } catch (error) {
+        throw new Error(error);
+      }
+      return response.data;
+    }
+
     Object.defineProperties(this, {
       login: {
         value: login,
@@ -88,6 +99,10 @@ class UserAPI {
       },
       uploadUser: {
         value: uploadUser,
+        writable: false
+      },
+      addUser: {
+        value: addUser,
         writable: false
       }
     });

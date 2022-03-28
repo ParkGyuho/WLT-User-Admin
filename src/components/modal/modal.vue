@@ -63,14 +63,21 @@ export default {};
 .modal-header {
   margin-top: 0;
   color: #42b983;
+  text-align: center;
 }
 
 .modal-body {
   margin: 20px 0;
+  text-align: center;
 }
 
 .modal-default-button {
   float: right;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .modal-footer button {

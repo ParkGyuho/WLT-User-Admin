@@ -114,7 +114,7 @@
                     <v-col class="sub-info-input body-1">
                       <v-select
                         v-if="prop == 'user_type'"
-                        :items="roles_List"
+                        :items="userTypeList"
                         v-model="detailUser[prop]"
                       ></v-select>
                       <v-text-field
@@ -138,9 +138,12 @@
       <v-pagination v-model="page" :length="pageCount"> </v-pagination>
     </div>
     <div class="btn-area">
-      <router-link to="/adduser">
-        <v-btn elevation="2"> Add User </v-btn>
-      </router-link>
+      <v-dialog v-model="showAddUser" width="600px" persistent>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn elevation="2" v-bind="attrs" v-on="on"> Add User </v-btn>
+        </template>
+        <AddUserComponent @closeAddUser="closeAddUser" />
+      </v-dialog>
       <v-btn elevation="2" @click="deleteUser()"> Delete User </v-btn>
     </div>
   </v-container>
@@ -148,10 +151,14 @@
 
 <script>
 import { UserAPI } from "../../../services";
+import AddUserComponent from "../../AddUserComponent";
 
-const roles_List = ["Master", "Manager", "Worker"];
+const userTypeList = ["Master", "Manager", "Worker"];
 
 export default {
+  components: {
+    AddUserComponent
+  },
   data() {
     return {
       users: [],
@@ -163,13 +170,14 @@ export default {
       showDialog: false,
       editmode: false,
       detailUser: [],
-      roles_List: roles_List,
+      userTypeList: userTypeList,
       headers: [
         { text: "User Name", value: "user_name" },
         { text: "Login ID", value: "login_id" },
         { text: "User Type", value: "user_type" },
         { text: "Detail Info.", value: "detail_info", sortable: false }
-      ]
+      ],
+      showAddUser: false
     };
   },
   computed: {
@@ -230,6 +238,9 @@ export default {
       this.users = JSON.parse(JSON.stringify(this.beforeEditedUsers));
       this.showDialog = false;
       this.editmode = false;
+    },
+    closeAddUser() {
+      this.showAddUser = false;
     },
     deleteUser() {
       //remove filter를 누르면 다시 돌아옴;; 수정예정
